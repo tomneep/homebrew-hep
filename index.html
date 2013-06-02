@@ -1,79 +1,99 @@
 <!DOCTYPE html>
 <html>
-
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Homebrew-hep : High Energy Physics formulae for the Homebrew package manager" />
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-    <title>Homebrew-hep</title>
+    <title>Homebrew-hep by davidchall</title>
   </head>
 
   <body>
+    <header>
+      <div class="inner">
+        <h1>Homebrew-hep</h1>
+        <h2>High energy physics packages for Mac</h2>
+        <a href="https://github.com/davidchall/homebrew-hep" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/davidchall/homebrew-hep">View on GitHub</a>
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h2>
+<a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h2>
 
-          <h1 id="project_title">Homebrew-hep</h1>
-          <h2 id="project_tagline">High Energy Physics formulae for the Homebrew package manager</h2>
+<p>Many high energy physics programs require special installation instructions for Mac OS X, and their issue trackers are often filled with unresolved Mac issues. Problems are also encountered when trying to link all these programs together.</p>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/davidchall/homebrew-hep/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/davidchall/homebrew-hep/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
+<p>Homebrew-hep is a Mac package manager for HEP programs, based on <a href="http://brew.sh/">Homebrew</a>. In Homebrew language, it is a tap. From the end-user's perspective it is nice because it:</p>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
-<a name="homebrew-hep" class="anchor" href="#homebrew-hep"><span class="octicon octicon-link"></span></a>Homebrew-hep</h1>
-
-<p>This repository is a place to store <a href="http://brew.sh/">Homebrew</a> formulae relating to high energy physics. 
-Homebrew is a package manager for OS X, keeping things nicely organised in <code>/usr/local</code>.</p>
-
-<h2>
+<ul>
+<li>keeps things organised in <code>/usr/local</code> </li>
+<li>automatically handles package dependencies</li>
+<li>is easy to update programs</li>
+</ul><h2>
 <a name="instructions" class="anchor" href="#instructions"><span class="octicon octicon-link"></span></a>Instructions</h2>
 
 <ol>
-<li>First install Homebrew: <code>ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"</code>
+<li>Install <a href="http://brew.sh/">Homebrew</a>: <code>ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"</code>
 </li>
-<li>Tell it about this repository: <code>brew tap davidchall/hep</code>
+<li>Tap homebrew-hep: <code>brew tap davidchall/hep</code>
 </li>
-<li>Install HEP packages: <code>brew install &lt;formula&gt;</code> (e.g. <code>brew install pythia8</code>)</li>
-</ol><p>If a formula conflicts with an existing formula in the master repository, use <code>brew install davidchall/hep/&lt;formula&gt;</code>.</p>
+<li>Install HEP packages: <code>brew install &lt;package&gt;</code> (e.g. <code>brew install pythia8</code>)</li>
+</ol><p>A list of available HEP packages can be found <a href="https://github.com/davidchall/homebrew-hep">here</a>.</p>
 
-<p>For a list of available HEP packages, please see <a href="https://github.com/davidchall/homebrew-hep">here</a>.</p>
+<hr><h3>
+<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h3>
 
-<h2>
-<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
+<ul>
+<li>
+<strong>Homebrew:</strong> <code>brew help</code>, <code>man brew</code>, or the Homebrew <a href="http://wiki.github.com/mxcl/homebrew">wiki</a>
+</li>
+<li>
+<strong>HEP package:</strong> <code>brew info &lt;package&gt;</code>
+</li>
+</ul><h3>
+<a name="help" class="anchor" href="#help"><span class="octicon octicon-link"></span></a>Help</h3>
 
-<p><strong>Homebrew:</strong> <code>brew help</code>, <code>man brew</code>, or the Homebrew <a href="http://wiki.github.com/mxcl/homebrew">wiki</a>.</p>
+<p>If you are experiencing problems with a specific package, please report it on the <a href="https://github.com/davidchall/homebrew-hep/issues">issue tracker</a>. Please note that this is intended for issues arising from Mac installation, not problems with the package itself.</p>
 
-<p><strong>HEP package:</strong> <code>brew info &lt;formula&gt;</code></p>
+<h3>
+<a name="can-i-contribute" class="anchor" href="#can-i-contribute"><span class="octicon octicon-link"></span></a>Can I contribute?</h3>
 
-<h2>
-<a name="can-i-contribute" class="anchor" href="#can-i-contribute"><span class="octicon octicon-link"></span></a>Can I contribute?</h2>
+<p>Of course! Some possible ways could be:</p>
 
-<p>By all means, yes! I will update this document with instructions in the near future.
-But in the meantime, please consult Homebrew's <a href="https://github.com/mxcl/homebrew/wiki/Formula-Cookbook">wiki page</a> on how to add a new formula.</p>
-      </section>
+<ul>
+<li>add a new package</li>
+<li>add a new option to an existing package</li>
+<li>update a package to the latest version</li>
+</ul><p>Please see the Homebrew-hep <a href="https://github.com/davidchall/homebrew-hep/wiki">wiki</a> for full instructions on how you can help.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/davidchall/homebrew-hep/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/davidchall/homebrew-hep/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/davidchall/homebrew-hep"></a> is maintained by <a href="https://github.com/davidchall">davidchall</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
     </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Homebrew-hep maintained by <a href="https://github.com/davidchall">davidchall</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
+  
   </body>
 </html>
