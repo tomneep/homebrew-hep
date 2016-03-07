@@ -32,6 +32,7 @@ class Madgraph5Amcatnlo < Formula
       Template/NLO/Events
       Template/NLO/MCatNLO/lib
       Template/NLO/MCatNLO/objects
+      Template/loop_material/StandAlone/SubProcesses/MadLoop5_resources
       doc
       models/usrmod_v4
       vendor/StdHEP/bin
