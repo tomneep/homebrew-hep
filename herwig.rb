@@ -1,21 +1,31 @@
 class Herwig < Formula
-  desc ""
-  homepage "https://herwig.hepforge.org"
-  url "http://www.hepforge.org/archive/herwig/Herwig-7.0.1.tar.bz2"
-  version "7.0.1"
-  sha256 "aa5caea8804b48f0adedea9c3b3f2adcfc1ab639b3f73a725ffddee13427ca92"
+  desc "Monte Carlo event generator"
+  homepage "http://herwig.hepforge.org"
+  url "http://www.hepforge.org/archive/herwig/Herwig-7.0.2.tar.bz2"
+  sha256 "58139745e9fe1d3dada1eefffde2016d70cf593004a9bac5838c4ac7f5491a5e"
+
+  head do
+    url "http://herwig.hepforge.org/hg/herwig", :using => :hg
+
+    depends_on "autoconf" => :build
+    depends_on "automake" => :build
+    depends_on "libtool" => :build
+    depends_on "gengetopt"
+  end
+
+  option "with-test", "Test during installation"
 
   depends_on "thepeg"
-  depends_on "fastjet"
-  depends_on "gsl"
+  depends_on "hepmc"
   depends_on "boost"
-
-  depends_on "madgraph5_amcatnlo" => :recommended
-  depends_on "vbfnlo" => :optional
-  depends_on "njet" => :optional
-  depends_on "gosam" => :optional
+  depends_on "gsl"
+  depends_on "madgraph5_amcatnlo" => :optional
   depends_on "openloops" => :optional
-  
+  depends_on "vbfnlo" => :optional
+  depends_on :python
+  depends_on :fortran
+  cxxstdlib_check :skip
+
   def install
     args = %W[
       --disable-debug
@@ -23,25 +33,26 @@ class Herwig < Formula
       --disable-silent-rules
       --prefix=#{prefix}
       --with-thepeg=#{Formula["thepeg"].opt_prefix}
-      --with-fastjet=#{Formula["fastjet"].opt_prefix}
-      --with-gsl=#{Formula["gsl"].opt_prefix}
-      --with-boost=#{Formula["boost"].opt_prefix}
+      --enable-stdcxx11
     ]
 
     args << "--with-madgraph=#{Formula["madgraph5_amcatnlo"].opt_prefix}" if build.with? "madgraph5_amcatnlo"
-    args << "--with-vbfnlo=#{Formula["vbfnlo"].opt_prefix}" if build.with? "vbfnlo"
-    args << "--with-njet=#{Formula["njet"].opt_prefix}" if build.with? "njet"
-    args << "--with-gosam=#{Formula["gosam"].opt_prefix}" if build.with? "gosam"
-    args << "--with-gosam-contrib=#{Formula["gosam-contrib"].opt_prefix}" if build.with? "gosam"
-    args << "--with-openloops=#{Formula["openloops"].opt_prefix}" if build.with? "openloops"
-    
+    args << "--with-openloops=#{Formula["openloops"].opt_prefix}"         if build.with? "openloops"
+    args << "--with-vbfnlo=#{Formula["vbfnlo"].opt_prefix}"               if build.with? "vbfnlo"
+
+    system "autoreconf", "-i" if build.head?
     system "./configure", *args
-    system "make", "check"
+    system "make"
+    # Herwig runs ThePEG during the make install and make check phases
+    system "lhapdf", "install", "MMHT2014lo68cl"
+    system "lhapdf", "install", "MMHT2014nlo68cl"
+    system "make", "check" if build.with? "test"
     system "make", "install"
   end
 
   test do
-    system "Herwig read #{share}/Herwig/LHC-Matchbox.in"
-    system "Herwig run LHC-Matchbox.run -N 50"    
+    system "Herwig", "read", share/"Herwig/LHC.in"
+    system "Herwig", "run", "LHC.run", "-N", "50"
+    ohai "Successfully generated 50 LHC Drell-Yan events."
   end
 end

@@ -4,7 +4,7 @@ before_install:
   - brew upgrade gcc cmake
 install:
   - mkdir -p $(brew --repo)/Library/Taps/travis
-  - ln -s $PWD $(brew --repo)/Library/Taps/travis/travis-testtap
+  - ln -s $PWD $(brew --repo)/Library/Taps/travis/homebrew-testtap
   - brew tap --repair
 env:
   - PACKAGE=applgrid
@@ -12,7 +12,7 @@ env:
   - PACKAGE=fastnlo
   - PACKAGE=fjcontrib
   - PACKAGE=hepmc
-  - PACKAGE=herwig++
+  - PACKAGE=herwig
   - PACKAGE=hoppet
   - PACKAGE=jetvheto
   - PACKAGE=lhapdf
@@ -28,8 +28,12 @@ env:
   - PACKAGE=sherpa
   - PACKAGE=thepeg
   - PACKAGE=topdrawer
+  - PACKAGE=vbfnlo
+  - PACKAGE=vincia
   - PACKAGE=whizard
   - PACKAGE=yoda
 script:
-  - if [ "$PACKAGE" != "qcdnum" ]; then brew audit $PACKAGE; fi
+  - brew audit $PACKAGE
+  - HOMEBREW_VERBOSE_USING_DOTS=1 brew install -v --only-dependencies $PACKAGE
   - brew install -v $PACKAGE
+  - '! brew cat $PACKAGE | grep -q "test do" || brew test -v $PACKAGE'
